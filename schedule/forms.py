@@ -9,5 +9,5 @@ class AssessmentScheduleForm(forms.ModelForm):
             'grade': '학년',
             'title': '제목',
             'description': '부가 설명',
-            'date': '날짜',
+            'date': '날짜(yyyy-mm-dd)',
         }
