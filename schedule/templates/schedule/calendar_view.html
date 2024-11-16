@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>{{ grade }}학년 11월 수행평가 일정</title>
+    <title>{{ grade }}학년 수행평가 일정</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,13 +25,15 @@
             font-size: 1.5em;
         }
 
-        td span{
-            height: 14%;
-            font-weight: bold;
-        }
-
         th {
             background-color: palevioletred;
+            color: white; /* 요일 색상 흰색으로 설정 */
+        }
+
+        td span {
+            height: 14%;
+            font-weight: bold;
+            color: palevioletred; /* 날짜 숫자 색상 */
         }
 
         .schedule {
@@ -45,6 +47,7 @@
             display: block;
             white-space: normal;  /* 텍스트가 길어지면 줄바꿈 */
             word-wrap: break-word;  /* 긴 텍스트가 끊어져서 줄바꿈 */
+            color: palevioletred; /* 일정 색상 */
         }
 
         .schedule p {
@@ -54,11 +57,12 @@
         /* 일정 제목 스타일 */
         .schedule p:first-child {
             font-size: 18px;
+            color: palevioletred; /* 제목 색상 */
         }
 
         /* 부가 설명 스타일 */
         .schedule p:nth-child(2) {
-            color: gray;
+            color: gray; /* 설명 색상 */
             font-size: 18px;
         }
 
@@ -99,6 +103,10 @@
 
         .back-button:hover {
             background-color: rgb(203, 64, 110);
+        }
+
+        h1 {
+            color: palevioletred; /* 학년 제목 색상 */
         }
     </style>
 </head>
