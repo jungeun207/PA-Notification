@@ -50,4 +50,3 @@ def calendar_view(request, grade):
     }
 
     return render(request, 'schedule/calendar_view.html', context)
-    '''return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\grade_selection.html')'''
