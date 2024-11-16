@@ -15,14 +15,10 @@ def assessment_add(request):
     else:
         form = AssessmentScheduleForm()
 
-    return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\assessment_add.html', {'form': form})
-
-def index(request):
-    schedules = Schedule.objects.all()
-    return render(request, r"C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\index.html", {"schedules": schedules})
+    return render(request, 'schedule/assessment_add.html', {'form': form})
 
 def grade_selection(request):
-    return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\grade_selection.html')
+    return render(request, 'schedule/grade_selection.html')
 
 def delete_schedule(request, schedule_id):
     schedule = AssessmentSchedule.objects.get(id=schedule_id)
@@ -53,5 +49,5 @@ def calendar_view(request, grade):
         'form': form,
     }
 
-    return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\calendar_view.html', context)
-    return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\grade_selection.html')
+    return render(request, 'schedule/calendar_view.html', context)
+    '''return render(request, r'C:\Users\user\OneDrive\바탕 화면\PA Notification\site\mysite\schedule\templates\schedule\grade_selection.html')'''
