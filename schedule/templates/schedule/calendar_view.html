@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ grade }}학년 수행평가 일정</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            height: 100vh;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.5em;
+        }
+
+        td span{
+            height: 14%;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: palevioletred;
+        }
+
+        .schedule {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-top: 2px;
+            padding-bottom: 0.1px;
+            background-color: white;
+            border-radius: 5px;
+            position: relative;
+            display: block;
+            white-space: normal;  /* 텍스트가 길어지면 줄바꿈 */
+            word-wrap: break-word;  /* 긴 텍스트가 끊어져서 줄바꿈 */
+        }
+
+        .schedule p {
+            margin: 0;
+        }
+
+        /* 일정 제목 스타일 */
+        .schedule p:first-child {
+            font-size: 18px;
+        }
+
+        /* 부가 설명 스타일 */
+        .schedule p:nth-child(2) {
+            color: gray;
+            font-size: 18px;
+        }
+
+        /* 삭제 버튼 */
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: palevioletred;
+            text-decoration: none;
+            color: white;
+            border: none;
+            padding: 2px;
+            border-radius: 2x;
+            cursor: pointer;
+            font-size: 15px;
+            display: none;
+        }
+
+        .schedule:hover .delete-btn {
+            display: block;
+        }
+
+        .delete-btn:hover {
+            background-color: rgb(203, 64, 110);
+        }
+
+        .back-button {
+            margin-left: 20px;
+            background-color: palevioletred;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: rgb(203, 64, 110);
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ grade }}학년 수행평가 일정
+        <a href="{% url 'grade_selection' %}" class="back-button">처음 화면으로 돌아가기</a>
+    </h1>
+
+    <!-- 달력 테이블 -->
+    <table>
+        <thead>
+            <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar %}
+                <tr>
+                    {% for day in week %}
+                        <td>
+                            {% if day %}
+                                <span>{{ day }}</span>
+                                {% for schedule in schedules %}
+                                    {% if schedule.date.day == day %}
+                                        <div class="schedule">
+                                            <p>{{ schedule.title }}</p>
+                                            <p>{{ schedule.description }}</p>
+                                            <!-- 삭제 버튼 -->
+                                            <form method="POST" action="{% url 'delete_schedule' schedule.id %}">
+                                                {% csrf_token %}
+                                                <button class="delete-btn" type="submit">삭제</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
