@@ -38,7 +38,7 @@ def calendar_view(request, grade):
             return redirect('calendar_view', grade=grade)  # 새 일정 추가 후 리다이렉션
         
     year=2024
-    month=11
+    month=12
     cal = calendar.Calendar(firstweekday=-1)
     month_days = cal.monthdayscalendar(year, month)
     
